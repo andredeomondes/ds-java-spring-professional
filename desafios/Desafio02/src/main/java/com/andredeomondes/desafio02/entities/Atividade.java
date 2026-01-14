@@ -2,9 +2,7 @@ package com.andredeomondes.desafio02.entities;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_atividade")
@@ -17,12 +15,20 @@ public class Atividade {
     private String description;
     private Double price;
 
-    @ManyToMany(mappedBy = "atividades")
-    private Set<Participante> participantes = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name="categoria_id")
+    private Categoria categoria;
 
     public Long getId() {
         return id;
     }
+
+    @OneToMany(mappedBy = "atividade")
+    private List<Bloco> blocos = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "atividades")
+    private Set<Participante> participantes = new HashSet<>();
 
     public void setId(Long id) {
         this.id = id;
@@ -50,6 +56,22 @@ public class Atividade {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<Bloco> getBlocos() {
+        return blocos;
+    }
+
+    public Set<Participante> getParticipantes() {
+        return participantes;
     }
 
     @Override

@@ -15,7 +15,7 @@ public class Categoria {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @OneToMany(mappedBy = "categorias")
+    @OneToMany(mappedBy = "categoria")
     Set<Atividade> atividades = new HashSet<>();
 
     public Categoria(Long id, String description) {
