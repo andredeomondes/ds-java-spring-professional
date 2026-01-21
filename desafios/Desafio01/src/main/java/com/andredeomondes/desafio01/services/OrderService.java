@@ -4,9 +4,11 @@ import com.andredeomondes.desafio01.entitites.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+// Serviço de pedido
 @Service
 public class OrderService {
 
+    // Injeção de dependência do serviço de frete
     @Autowired
     private ShippingService shippingService;
 

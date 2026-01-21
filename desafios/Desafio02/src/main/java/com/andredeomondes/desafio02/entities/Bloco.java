@@ -5,28 +5,39 @@ import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
 
+// Entidade Bloco representando um bloco de tempo associado a uma atividade
 @Entity
+// Tabela mapeada para "tb_bloco"
 @Table(name="tb_bloco")
 public class Bloco {
+    // Atributos da entidade Bloco
     @Id
+    // Chave primária com geração automática de valor
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant inicio;
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant fim;
 
+    // Coluna de início com definição de tipo TIMESTAMP WITH TIME ZONE
+    @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private Instant start;
+    // Coluna de fim com definição de tipo TIMESTAMP WITH TIME ZONE
+    @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private Instant end;
+
+    // Relacionamento Many-to-One com a entidade Atividade
     @ManyToOne
+    // Chave estrangeira para a atividade
     @JoinColumn(name="atividade_id")
+    // Atividade associada ao bloco
     private Atividade atividade;
 
     public Bloco() {
     }
 
-    public Bloco(Long id, Instant inicio, Instant fim) {
+    public Bloco(Long id, Instant start, Instant end, Atividade atividade) {
         this.id = id;
-        this.inicio = inicio;
-        this.fim = fim;
+        this.start = start;
+        this.end = end;
+        this.atividade = atividade;
     }
 
     public Long getId() {
@@ -37,20 +48,28 @@ public class Bloco {
         this.id = id;
     }
 
-    public Instant getInicio() {
-        return inicio;
+    public Instant getStart() {
+        return start;
     }
 
-    public void setInicio(Instant inicio) {
-        this.inicio = inicio;
+    public void setStart(Instant start) {
+        this.start = start;
     }
 
-    public Instant getFim() {
-        return fim;
+    public Instant getEnd() {
+        return end;
     }
 
-    public void setFim(Instant fim) {
-        this.fim = fim;
+    public void setEnd(Instant end) {
+        this.end = end;
+    }
+
+    public Atividade getAtividade() {
+        return atividade;
+    }
+
+    public void setAtividade(Atividade atividade) {
+        this.atividade = atividade;
     }
 
     @Override

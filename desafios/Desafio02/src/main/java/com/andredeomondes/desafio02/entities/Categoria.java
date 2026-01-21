@@ -2,21 +2,28 @@ package com.andredeomondes.desafio02.entities;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
+// Entidade Categoria representando uma categoria de atividades
 @Entity
+// Tabela mapeada para "tb_categoria"
 @Table(name = "tb_categoria")
 public class Categoria {
+
+    // Atributos da entidade Categoria
     @Id
+    // Chave primária com geração automática de valor
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    // Coluna de descrição com definição de tipo TEXT
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    // Relacionamento One-to-Many com a entidade Atividade
     @OneToMany(mappedBy = "categoria")
-    Set<Atividade> atividades = new HashSet<>();
+    // Conjunto de atividades associadas à categoria
+    List<Atividade> atividades = new ArrayList<>();
 
     public Categoria(Long id, String description) {
         this.id = id;
@@ -39,7 +46,7 @@ public class Categoria {
         this.description = description;
     }
 
-    public Set<Atividade> getAtividades() {
+    public List<Atividade> getAtividades() {
         return atividades;
     }
 

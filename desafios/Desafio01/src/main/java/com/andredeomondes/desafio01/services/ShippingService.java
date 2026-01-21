@@ -3,6 +3,7 @@ package com.andredeomondes.desafio01.services;
 import com.andredeomondes.desafio01.entitites.Order;
 import org.springframework.stereotype.Service;
 
+// Serviço de frete
 @Service
 public class ShippingService {
 

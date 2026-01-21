@@ -4,30 +4,47 @@ import jakarta.persistence.*;
 
 import java.util.*;
 
+// Entidade Atividade representando uma atividade com atributos e relacionamentos
 @Entity
+// Tabela mapeada para "tb_atividade"
 @Table(name = "tb_atividade")
 public class Atividade {
+
+    // Atributos da entidade Atividade
     @Id
+    // Chave primária com geração automática de valor
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String name;
+
+    // Coluna de descrição com definição de tipo TEXT
     @Column(columnDefinition = "TEXT")
+    // Descrição da atividade
     private String description;
+
     private Double price;
 
-
+    // Relacionamento Many-to-One com a entidade Categoria
     @ManyToOne
-    @JoinColumn(name="categoria_id")
+    // Chave estrangeira para a categoria
+    @JoinColumn(name = "categoria_id")
+    // Categoria associada à atividade
     private Categoria categoria;
 
     public Long getId() {
         return id;
     }
 
+    // Relacionamento One-to-Many com a entidade Bloco
     @OneToMany(mappedBy = "atividade")
+    // Lista de blocos associados à atividade
     private List<Bloco> blocos = new ArrayList<>();
 
+
+    // Relacionamento Many-to-Many com a entidade Participante
     @ManyToMany(mappedBy = "atividades")
+    // Conjunto de participantes associados à atividade
     private Set<Participante> participantes = new HashSet<>();
 
     public void setId(Long id) {

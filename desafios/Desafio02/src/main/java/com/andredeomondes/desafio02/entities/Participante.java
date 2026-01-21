@@ -6,18 +6,24 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+// Entidade Participante representando um participante com atributos e relacionamentos
 @Entity
+// Tabela mapeada para "tb_participante"
 @Table(name = "tb_participante")
 public class Participante {
 
+    // Atributos da entidade Participante
     @Id
+    // Chave primária com geração automática de valor
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @Column(unique=true)
     private String email;
 
+    // Relacionamento Many-to-Many com a entidade Atividade
     @ManyToMany
+    // Tabela de junção para o relacionamento Many-to-Many
     @JoinTable(name = "tb_participante_atividade",
             joinColumns = @JoinColumn(name = "participante_id"),
             inverseJoinColumns = @JoinColumn(name = "atividade_id")

@@ -14,14 +14,27 @@ import java.util.Scanner;
 @SpringBootApplication
 @ComponentScan({"com.andredeomondes"})
 public class Desafio01Application implements CommandLineRunner {
+    /**
+     * <h1> DEVSUPERIOR - Java Spring Professional - Capítulo: Componentes e injeção de dependência</h1>
+     * DESAFIO: Componentes e injeção de dependência
+     * <p>
+     * <b>Note:</b> Desenvolvido na linguagem Java.
+     *
+     * @author  André Deomondes
+     *
+     */
 
+    // Injeção de dependência do serviço de pedido
     @Autowired
+    // Serviço de pedido
     private OrderService orderService;
 
+    // Método principal
     public static void main(String[] args) {
         SpringApplication.run(Desafio01Application.class, args);
     }
 
+    // Método executado na inicialização da aplicação
     @Override
     public void run(String... args) throws Exception {
 
